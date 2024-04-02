@@ -1,0 +1,33 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <head th:replace= "~{layout/plantilla :: head}">        
+        <title>Santory</title>
+    </head>
+    <body>
+
+        <header th:replace= "~{layout/plantilla :: header}"/>
+        <div id="carouselExampleControls" class="carousel slide mb-0" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://scontent.fsjo14-1.fna.fbcdn.net/v/t39.30808-6/295268925_3209634789304112_7376739896725703594_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=AekL3F0mEFoAX8dFloe&_nc_ht=scontent.fsjo14-1.fna&oh=00_AfC_0M42DS7f2Tb0C-X8MaA2qej7ahgzJpFk2RuHjQWqAQ&oe=660FDD9C" class="d-block w-100" alt="Zapatillas de charol azul">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://scontent.fsjo14-1.fna.fbcdn.net/v/t39.30808-6/305923989_3246290435638547_6050255729709782789_n.png?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=DCYnxjVqsvsAX95DdI3&_nc_ht=scontent.fsjo14-1.fna&oh=00_AfAwj6R0ZGUHzxHLeiS6mDLhIXEcpSr-GNpvbkZfDH7D0g&oe=660FE063" class="d-block w-100" alt="Hermosas y delicado zapatilla casual">
+                </div>
+            </div>
+
+            <!-- Botones de control del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <footer th:replace= "~{layout/plantilla :: footer}"/>
+    </body> 
+</html>
