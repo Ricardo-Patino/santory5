@@ -79,46 +79,68 @@
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad categoria -->
-<section th:fragment="listadocalzadoFemenino" id="calzadoFemenino">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Listado de Calzado Femenino</h4>
-                    </div>
-                    <div th:if="${calzadofemeninoes != null and !calzadofemeninoes.empty}">
-                        <!-- Carrusel de Bootstrap -->
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <!-- Itera sobre las nuevas colecciones para crear las diapositivas del carrusel -->
-                                <div th:each="calzadoFemenino, contador : ${calzadofemeninoes}" class="carousel-item" th:classappend="${contador.first} ? 'active'">
-                                    <img th:src="${calzadoFemenino.rutaImagen}" class="d-block w-100" alt="...">
-                                    <div class="carousel-caption d-none d-md-block">
-                                        <h5 th:text="${calzadoFemenino.descripcion}"></h5>
-                                        <p th:text="${calzadoFemenino.precio}"></p>
+        <section th:fragment="listadocalzadoFemenino" id="calzadoFemenino">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                   
+                        <h4 class="text-center fw-bold border-bottom border-dark pb-2">Calzado Femenino</h4>
+
+                            <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <!-- Primera fila de imágenes -->
+                                    <div class="carousel-item active">
+                                        <div class="row">
+                                            <!-- Imágenes 1-3 -->
+                                            <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" th:if="${iterStat.index < 3}" class="col-md-4">
+                                                <div class="card border-secondary mb-3">
+                                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                                        <div class="card-body">
+                                                            <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
+                                                            <p>
+                                                                ₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span>
+                                                            </p>
+                                                            <button class="btn btn-primary"style="background-color: #F29BA2; color: black; border-color: #F29BA2;">Ver detalle</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Segunda fila de imágenes -->
+                                    <div class="carousel-item">
+                                        <div class="row">
+                                            <!-- Imágenes 4-6 -->
+                                            <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" th:if="${iterStat.index >= 3 && iterStat.index < 6}" class="col-md-4">
+                                                <div class="card border-secondary mb-3">
+                                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                                        <div class="card-body">
+                                                            <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
+                                                            <p>
+                                                                ₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span>
+                                                            </p>
+                                                            <button class="btn btn-primary"style="background-color: #F29BA2; color: black; border-color: #F29BA2;">Ver detalle</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Botones de control -->
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
                             </div>
-                            <!-- Botones de control -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
                         </div>
                     </div>
-                    <div class="text-center p-2" th:if="${calzadofemeninoes == null or calzadofemeninoes.empty}">
-                        <span>Lista vacia</span>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
+
+
 
 
         <!-- 4 Fragmento que se utiliza en la página modifca.html -->
