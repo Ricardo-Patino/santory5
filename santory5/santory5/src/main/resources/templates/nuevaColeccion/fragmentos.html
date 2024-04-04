@@ -99,7 +99,34 @@
                                                         <p>
                                                             ₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span>
                                                         </p>
-                                                        <button class="btn btn-primary"style="background-color: #F29BA2; color: black; border-color: #F29BA2;">Ver detalle</button>
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleZapatoModal">
+                                                            Ver detalle
+                                                        </button>
+
+                                                        <!-- Modales para mostrar el detalle de cada zapato -->
+                                                        <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <div class="row">
+                                                                            <div class="col">
+                                                                                <img th:src="${nuevaColeccion.rutaImagen}" alt="Imagen del zapato" class="img-fluid">
+                                                                            </div>
+                                                                            <div class="col">
+                                                                                <h5 th:text="${nuevaColeccion.descripcion}"></h5>
+                                                                                <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
+                                                                                <button type="button" class="btn btn-success">Agregar al carrito</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                   </div>
+                                                        </div>
+
                                                     </div>
                                             </div>
                                         </div>
@@ -117,7 +144,10 @@
                                                         <p>
                                                             ₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span>
                                                         </p>
-                                                        <button class="btn btn-primary">Agregar al carrito</button>
+                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
+                                                            Ver detalle
+                                                        </button>
+
                                                     </div>
                                             </div>
                                         </div>
@@ -195,26 +225,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">

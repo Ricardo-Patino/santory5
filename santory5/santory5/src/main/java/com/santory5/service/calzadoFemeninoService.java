@@ -16,6 +16,6 @@ public interface calzadoFemeninoService {
     public void save(calzadoFemenino calzadofemenino);
     
     // Se elimina el categoria que tiene el id pasado por parámetro
-    public void delete(calzadoFemenino calzafemenino);
+    public void delete(calzadoFemenino calzadofemenino);
  
 }
