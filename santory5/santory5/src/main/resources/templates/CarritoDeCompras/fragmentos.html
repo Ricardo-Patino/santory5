@@ -96,7 +96,7 @@
                                     <div class="carousel-item active">
                                         <div class="row">
                                             <!-- Imágenes 1-3 -->
-                                            <div th:each="Promociones, iterStat : ${promocioneses}" th:if="${iterStat.index < 3}" class="col-md-4">
+                                            <div th:each="Promociones, iterStat : ${promocioneses}" th:if="${iterStat.index < 100}" class="col-md-4">
                                                 <div class="card border-secondary mb-3">
                                                     <img th:src="${Promociones.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
                                                         <div class="card-body">
