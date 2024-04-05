@@ -23,7 +23,7 @@
             </div>
         </section>
 
-        <!-- 2 Fragmento para agregar nuevaColeccion, es la ventana modal -->
+        <!-- 2 Fragmento para agregar calzadoFemenino, es la ventana modal -->
         <section th:fragment="agregarcalzadoFemenino">
             <div id="agregarCategoria" 
                  class="modal fade" 
@@ -83,62 +83,51 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                   
-                        <h4 class="text-center fw-bold border-bottom border-dark pb-2">Calzado Femenino</h4>
-
-                            <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <!-- Primera fila de imágenes -->
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            <!-- Imágenes 1-3 -->
-                                            <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" th:if="${iterStat.index < 3}" class="col-md-4">
-                                                <div class="card border-secondary mb-3">
-                                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
-                                                        <div class="card-body">
-                                                            <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
-                                                            <p>
-                                                                ₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span>
-                                                            </p>
-                                                            <button class="btn btn-primary"style="background-color: #F29BA2; color: black; border-color: #F29BA2;">Ver detalle</button>
-                                                        </div>
-                                                </div>
-                                            </div>
+                        <h4 class="text-center fw-bold border-bottom border-dark pb-2">Nueva Colección</h4>
+                        <div class="row">
+                            <!-- Aquí se muestran las imágenes de la nueva colección -->
+                            <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" class="col-md-4">
+                                <div class="card border-secondary mb-3">
+                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                        <div class="card-body">
+                                            <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
+                                            <p>₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span></p>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${calzadoFemenino.id_calzadofemenino}" th:data-descripcion="${calzadoFemenino.descripcion}" th:data-precio="${calzadoFemenino.precio}">
+                                                Ver detalle
+                                            </button>
                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modales para mostrar el detalle de cada zapato -->
+                        <div th:each="calzadoFemenino : ${calzadofemeninoes}" class="modal fade" th:id="'detalleZapatoModal'+${calzadoFemenino.id_calzadofemenino}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${calzadoFemenino.id_calzadofemenino}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${calzadoFemenino.id_calzadofemenino}" th:text="'Detalle del Zapato - '+${calzadoFemenino.descripcion}"></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
-                                    <!-- Segunda fila de imágenes -->
-                                    <div class="carousel-item">
+                                    <div class="modal-body">
                                         <div class="row">
-                                            <!-- Imágenes 4-6 -->
-                                            <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" th:if="${iterStat.index >= 3 && iterStat.index < 6}" class="col-md-4">
-                                                <div class="card border-secondary mb-3">
-                                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
-                                                        <div class="card-body">
-                                                            <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
-                                                            <p>
-                                                                ₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span>
-                                                            </p>
-                                                            <button class="btn btn-primary"style="background-color: #F29BA2; color: black; border-color: #F29BA2;">Ver detalle</button>
-                                                        </div>
-                                                </div>
+                                            <div class="col">
+                                                <img th:src="${calzadoFemenino.rutaImagen}" alt="Imagen del zapato" class="img-fluid">
+                                            </div>
+                                            <div class="col">
+                                                <h5 th:text="${calzadoFemenino.descripcion}"></h5>
+                                                <p th:text="'Precio: '+${calzadoFemenino.precio}"></p>
+                                                <button type="button" class="btn btn-success">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Botones de control -->
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Anterior</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Siguiente</span>
-                                </button>
                             </div>
                         </div>
+                        <!-- Fin de modales -->
                     </div>
                 </div>
+            </div>
         </section>
+
 
 
 

@@ -84,86 +84,45 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h4 class="text-center fw-bold border-bottom border-dark pb-2">Nueva Colección</h4>
-                        <!-- Carrusel de Bootstrap -->
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <!-- Primera fila de imágenes -->
-                                <div class="carousel-item active">
-                                    <div class="row">
-                                        <!-- Imagen 1 -->
-                                        <div th:each="nuevaColeccion, iterStat : ${nuevacolecciones}" th:if="${iterStat.index < 3}" class="col-md-4">
-                                            <div class="card border-secondary mb-3">
-                                                <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
-                                                    <div class="card-body">
-                                                        <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
-                                                        <p>
-                                                            ₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span>
-                                                        </p>
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleZapatoModal">
-                                                            Ver detalle
-                                                        </button>
-
-                                                        <!-- Modales para mostrar el detalle de cada zapato -->
-                                                        <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <div class="row">
-                                                                            <div class="col">
-                                                                                <img th:src="${nuevaColeccion.rutaImagen}" alt="Imagen del zapato" class="img-fluid">
-                                                                            </div>
-                                                                            <div class="col">
-                                                                                <h5 th:text="${nuevaColeccion.descripcion}"></h5>
-                                                                                <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
-                                                                                <button type="button" class="btn btn-success">Agregar al carrito</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                   </div>
-                                                        </div>
-
-                                                    </div>
-                                            </div>
+                        <div class="row">
+                            <!-- Aquí se muestran las imágenes de la nueva colección -->
+                            <div th:each="nuevaColeccion, iterStat : ${nuevacolecciones}" class="col-md-4">
+                                <div class="card border-secondary mb-3">
+                                    <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                        <div class="card-body">
+                                            <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
+                                            <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
+                                                Ver detalle
+                                            </button>
                                         </div>
-                                    </div>
                                 </div>
-                                <!-- Segunda fila de imágenes -->
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <!-- Imagen 4 -->
-                                        <div th:each="nuevaColeccion, iterStat : ${nuevacolecciones}" th:if="${iterStat.index >= 3 && iterStat.index < 100}" class="col-md-4">
-                                            <div class="card border-secondary mb-3">
-                                                <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
-                                                    <div class="card-body">
-                                                        <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
-                                                        <p>
-                                                            ₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span>
-                                                        </p>
-                                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
-                                                            Ver detalle
-                                                        </button>
-
-                                                    </div>
+                            </div>
+                        </div>
+                        <!-- Modales para mostrar el detalle de cada zapato -->
+                        <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <img th:src="${nuevaColeccion.rutaImagen}" alt="Imagen del zapato" class="img-fluid">
+                                            </div>
+                                            <div class="col">
+                                                <h5 th:text="${nuevaColeccion.descripcion}"></h5>
+                                                <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
+                                                <button type="button" class="btn btn-success">Agregar al carrito</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Botones de control -->
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Anterior</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Siguiente</span>
-                            </button>
                         </div>
+                        <!-- Fin de modales -->
                     </div>
                 </div>
             </div>
