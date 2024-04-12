@@ -88,7 +88,7 @@
                             <!-- Aquí se muestran las imágenes de la nueva colección -->
                             <div th:each="calzadoFemenino, iterStat : ${calzadofemeninoes}" class="col-md-4">
                                 <div class="card border-secondary mb-3">
-                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                    <img th:src="${calzadoFemenino.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)} "> <!--style="width:650px;height:650px;-->
                                         <div class="card-body">
                                             <h5 th:text="${calzadoFemenino.descripcion}" class="card-title"></h5>
                                             <p>₡<span th:text="${calzadoFemenino.precio}" class="card-text"></span></p>
