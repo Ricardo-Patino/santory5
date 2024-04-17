@@ -39,16 +39,15 @@ public class calzadoFemeninoController {
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String calzadoFemeninoGuardar(calzadoFemenino calzadofemenino,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-        if (!imagenFile.isEmpty()) {
-            calzadoFemeninoService.save(calzadofemenino);
-            calzadofemenino.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "calzadoFemenino", 
-                            calzadofemenino.getId_calzadofemenino()));
-        }
+    public String calzadoFemeninoGuardar(calzadoFemenino calzadofemenino) {        
+//        if (!imagenFile.isEmpty()) {
+//            calzadoFemeninoService.save(calzadofemenino);
+//            //calzadofemenino.setRutaImagen(
+////                    firebaseStorageService.cargaImagen(
+////                            imagenFile, 
+////                            "calzadoFemenino", 
+////                            calzadofemenino.getId_calzadofemenino()));
+//        }
         calzadoFemeninoService.save(calzadofemenino);
         return "redirect:/calzadoFemenino/listado";
     }

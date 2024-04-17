@@ -39,16 +39,15 @@ public class puntosDeVentaController {
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String puntosdeventaGuardar(puntosDeVenta puntosdeventa,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-        if (!imagenFile.isEmpty()) {
-            puntosDeVentaService.save(puntosdeventa);
-            puntosdeventa.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "puntosdeventa", 
-                            puntosdeventa.getId_sucursal()));
-        }
+    public String puntosdeventaGuardar(puntosDeVenta puntosdeventa) {        
+//        if (!imagenFile.isEmpty()) {
+//            puntosDeVentaService.save(puntosdeventa);
+//            puntosdeventa.setRutaImagen(
+//                    firebaseStorageService.cargaImagen(
+//                            imagenFile, 
+//                            "puntosdeventa", 
+//                            puntosdeventa.getId_sucursal()));
+//        }
         puntosDeVentaService.save(puntosdeventa);
         return "redirect:/puntosdeventa/listado";
     }
