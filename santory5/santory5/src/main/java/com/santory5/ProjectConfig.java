@@ -20,9 +20,10 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class ProjectConfig implements WebMvcConfigurer {
+
     /* Los siguientes métodos son para incorporar el tema de internacionalización en el proyecto */
-    
-    /* localeResolver se utiliza para crear una sesión de cambio de idioma*/
+
+ /* localeResolver se utiliza para crear una sesión de cambio de idioma*/
     @Bean
     public LocaleResolver localeResolver() {
         var slr = new SessionLocaleResolver();
@@ -48,11 +49,12 @@ public class ProjectConfig implements WebMvcConfigurer {
     //Bean para poder acceder a los Messages.properties en código...
     @Bean("messageSource")
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource= new ResourceBundleMessageSource();
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
+
     /* Los siguiente métodos son para implementar el tema de seguridad dentro del proyecto */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
@@ -66,25 +68,26 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/", "/index", "/errores/**",
-                        "/carrito/**", 
-                        "/registro/**", "/js/**", "/webjars/**")
+                .requestMatchers("/", "/index", "/errores/**", "/js/**", "/webjars/**")
                 .permitAll()
                 .requestMatchers(
-                        "/producto/nuevo", "/producto/guardar",
-                        "/producto/modificar/**", "/producto/eliminar/**",
-                        "/categoria/nuevo", "/categoria/guardar",
-                        "/categoria/modificar/**", "/categoria/eliminar/**",
-                        "/usuario/nuevo", "/usuario/guardar",
-                        "/usuario/modificar/**", "/usuario/eliminar/**",
-                        "/reportes/**"
+                        "/nuevaColeccion/listado", "/nuevaColeccion/nuevo",
+                        "/nuevaColeccion/guardar","/nuevaColeccion/modificar/",
+                        "/nuevaColeccion/eliminar/", "/calzadoFemenino/listado",
+                        "/calzadoFemenino/nuevo", "/calzadoFemenino/guardar",
+                        "/calzadoFemenino/modificar/", "/calzadoFemenino/eliminar/",
+                        "/promociones/listado","/promociones/nuevo",
+                        "/promociones/guardar","/promociones/modificar/", 
+                        "/promociones/eliminar/","/puntosDeVenta/listado",
+                        "/puntosDeVenta/nuevo","/puntosDeVenta/guardar",
+                        "/puntosDeVenta/modificar/", "/puntosDeVenta/eliminar/"
                 ).hasRole("ADMIN")
                 .requestMatchers(
-                        "/producto/listado",
-                        "/categoria/listado",
-                        "/usuario/listado"
-                ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/facturar/carrito")
+                        "/nuevaColeccion/listado",
+                        "/calzadoFemenino/listado",
+                        "/promociones/listado"
+                ).hasAnyRole("VENDEDOR")
+                .requestMatchers("/nuevaColeccion/listado")
                 .hasRole("USER")
                 )
                 .formLogin((form) -> form
@@ -94,7 +97,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     }
 
     /* El siguiente método se utiliza para completar la clase no es 
-    realmente funcional, la próxima semana se reemplaza con usuarios de BD */    
+    realmente funcional, la próxima semana se reemplaza con usuarios de BD */
 //    @Bean
 //    public UserDetailsService users() {
 //        UserDetails admin = User.builder()
@@ -114,10 +117,9 @@ public class ProjectConfig implements WebMvcConfigurer {
 //                .build();
 //        return new InMemoryUserDetailsManager(user, sales, admin);
 //    }
-    
     @Autowired
-   private UserDetailsService userDetailsService;
-    
+    private UserDetailsService userDetailsService;
+
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build)
             throws Exception {
