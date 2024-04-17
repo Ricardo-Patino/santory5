@@ -7,18 +7,27 @@
     <body>
 
         <header th:replace= "~{layout/plantilla :: header}"/>
-        <div id="carouselExampleControls" class="carousel slide mb-0" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="https://i.pinimg.com/564x/6e/22/f6/6e22f61af228d49b0f732b2a86302c95.jpg" class="d-block w-100" alt="Zapatillas de charol azul">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.pinimg.com/736x/c2/1a/cd/c21acdd7b1775990ce02f0609c4a51f5.jpg" class="d-block w-100" alt="Hermosas y delicado zapatilla casual">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://i.pinimg.com/564x/12/ee/f0/12eef053d141d25118f9c56971a68c1c.jpg" class="d-block w-100" alt="Hermosos botines femeninos">
-                </div>
-            </div>
+<style>
+    /* Establece un tamaño máximo para las imágenes dentro del carousel */
+    #carouselExampleControls img {
+        max-width: 100%;
+        height: 75%;
+    }
+</style>
+
+<div id="carouselExampleControls" class="carousel slide mb-0" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://i.pinimg.com/564x/6e/22/f6/6e22f61af228d49b0f732b2a86302c95.jpg" class="d-block w-100" alt="Zapatillas de charol azul">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/736x/c2/1a/cd/c21acdd7b1775990ce02f0609c4a51f5.jpg" class="d-block w-100" alt="Hermosas y delicado zapatilla casual">
+        </div>
+        <div class="carousel-item">
+            <img src="https://i.pinimg.com/564x/12/ee/f0/12eef053d141d25118f9c56971a68c1c.jpg" class="d-block w-100" alt="Hermosos botines femeninos">
+        </div>
+    </div>
+</div>
 
             <!-- Botones de control del carrusel -->
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
