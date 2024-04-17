@@ -39,16 +39,15 @@ public class nuevaColeccionController {
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String nuevaColeccionGuardar(nuevaColeccion nuevacoleccion,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-        if (!imagenFile.isEmpty()) {
-            nuevaColeccionService.save(nuevacoleccion);
-            nuevacoleccion.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "nuevaColeccion", 
-                            nuevacoleccion.getId_nuevacoleccion()));
-        }
+    public String nuevaColeccionGuardar(nuevaColeccion nuevacoleccion) {        
+//        if (!imagenFile.isEmpty()) {
+//            nuevaColeccionService.save(nuevacoleccion);
+//            nuevacoleccion.setRutaImagen(
+//                    firebaseStorageService.cargaImagen(
+//                            imagenFile, 
+//                            "nuevaColeccion", 
+//                            nuevacoleccion.getId_nuevacoleccion()));
+//        }
         nuevaColeccionService.save(nuevacoleccion);
         return "redirect:/nuevaColeccion/listado";
     }

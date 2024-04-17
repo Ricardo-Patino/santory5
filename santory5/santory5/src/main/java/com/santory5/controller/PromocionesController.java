@@ -41,16 +41,15 @@ public class PromocionesController {
     private FirebaseStorageServiceImpl firebaseStorageService;
     
     @PostMapping("/guardar")
-    public String promocionesGuardar(Promociones promociones,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {        
-        if (!imagenFile.isEmpty()) {
-            PromocionesService.save(promociones);
-            promociones.setRutaImagen(
-                    firebaseStorageService.cargaImagen(
-                            imagenFile, 
-                            "promociones", 
-                            promociones.getId_promociones()));
-        }
+    public String promocionesGuardar(Promociones promociones) {        
+//        if (!imagenFile.isEmpty()) {
+//            PromocionesService.save(promociones);
+//            promociones.setRutaImagen(
+//                    firebaseStorageService.cargaImagen(
+//                            imagenFile, 
+//                            "promociones", 
+//                            promociones.getId_promociones()));
+//        }
         PromocionesService.save(promociones);
         return "redirect:/promociones/listado";
     }
