@@ -21,6 +21,7 @@ public class calzadoFemenino implements Serializable { //serializacion porque se
     private String descripcion;
     private int cantidad_colores;
     private String talla;
+    private int existencias;
     private boolean activo;
     private String rutaImagen;
    

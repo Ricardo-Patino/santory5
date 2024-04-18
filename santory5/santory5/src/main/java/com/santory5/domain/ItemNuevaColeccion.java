@@ -1,0 +1,24 @@
+package com.santory5.domain;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@EqualsAndHashCode(callSuper=false)
+public class ItemNuevaColeccion extends nuevaColeccion {
+    private int cantidad; //Almacenar la cantidad de items de las Nuevas Colecciones
+
+    public ItemNuevaColeccion() {
+    }
+
+    public ItemNuevaColeccion(nuevaColeccion nuevacoleccion) {
+        super.setId_nuevacoleccion(nuevacoleccion.getId_nuevacoleccion());
+        super.setPrecio(nuevacoleccion.getPrecio());
+        super.setDescripcion(nuevacoleccion.getDescripcion());
+        super.setCantidad_colores(nuevacoleccion.getCantidad_colores());
+        super.setTalla(nuevacoleccion.getTalla());
+        super.setActivo(nuevacoleccion.isActivo());
+        super.setRutaImagen(nuevacoleccion.getRutaImagen());
+        this.cantidad = 0;
+    }
+}
