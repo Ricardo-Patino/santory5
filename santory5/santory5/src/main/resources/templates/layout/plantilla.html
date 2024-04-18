@@ -25,6 +25,27 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-3 d-flex justify-content-end align-items-startr">
+
+                    <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/login}">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                        <li class="nav-item my-auto">
+                            <form method="post" th:action="@{/logout}">
+                                <button class="btn btn-dark">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </button>
+
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </section>
 
             <nav class="navbar navbar-expand-sm p-0 py-2" style="background-color: #1B3059">
@@ -38,32 +59,13 @@
                             <div class="col-md-9">
 
                                 <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
-                                    <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/nuevaColeccion/listado}" style="color: white;">Nueva Colección</a></li>
+                                    <li class="nav-item ml-auto px-2"><a class="nav-menu-link nav-link" th:href="@{/nuevaColeccion/listado}" style="color: white;">Nueva Colección</a></li>
                                     <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/calzadoFemenino/listado}"style="color: white;">Calzado Femenino</a></li>
                                     <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/promociones/listado}"style="color: white;">Promociones</a></li>
                                     <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/puntosDeVenta/listado}"style="color: white;">Puntos de venta</a></li>
                                 </ul>
                             </div>
-                            <div class="col-md-3">
-                                <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
-                                    <li class="nav-item">
-                                        <a class="nav-link" th:href="@{/login}">
-                                            <i class="fas fa-sign-in-alt"></i>
-                                        </a>
-                                    </li>
-                                </ul>
 
-                                <ul class="navbar-nav" sec:authorize="isAuthenticated()">
-                                    <li class="nav-item my-auto">
-                                        <form method="post" th:action="@{/logout}">
-                                            <button class="btn btn-dark">
-                                                <i class="fas fa-sign-out-alt"></i>
-                                            </button>
-
-                                        </form>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
                     </div>
                 </div>
