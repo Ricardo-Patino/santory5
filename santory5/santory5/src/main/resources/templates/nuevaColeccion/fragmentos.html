@@ -87,12 +87,12 @@
                             <!-- Aquí se muestran las imágenes de la nueva colección -->
                             <div th:each="nuevaColeccion, iterStat : ${nuevacolecciones}" class="col-md-4">
                                 <div class="card border-secondary mb-3">
-                                    <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}">
+                                    <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}"/>
                                         <div class="card-body">
                                             <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
                                             <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
-                                                Ver detalle
+                                            Ver detalle 
                                             </button>
                                         </div>
                                 </div>
