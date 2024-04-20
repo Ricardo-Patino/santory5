@@ -88,13 +88,13 @@
                             <div th:each="nuevaColeccion, iterStat : ${nuevacolecciones}" class="col-md-4">
                                 <div class="card border-secondary mb-3">
                                     <img th:src="${nuevaColeccion.rutaImagen}" class="card-img-top" alt="Imagen" th:alt="${'Imagen ' + (iterStat.index + 1)}"/>
-                                        <div class="card-body">
-                                            <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
-                                            <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
-                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
+                                    <div class="card-body">
+                                        <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
+                                        <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
                                             Ver detalle 
-                                            </button>
-                                        </div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -114,8 +114,9 @@
                                             <div class="col">
                                                 <h5 th:text="${nuevaColeccion.descripcion}"></h5>
                                                 <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
-                                                <button type="button" class="btn btn-success">Agregar al carrito</button>
+                                                <a th:href="@{/carrito/listado}" class="btn btn-success">Agregar al carrito</a>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

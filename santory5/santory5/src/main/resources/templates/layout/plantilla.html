@@ -25,23 +25,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 d-flex justify-content-end align-items-startr">
-
-                    <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/login}">
+                <div class="col-md-3 d-flex justify-content-end align-items-startr"style="background-color: #F29BA2">
+                    <ul class="navbar-nav ml-auto" sec:authorize="!isAuthenticated()"style="background-color: #F29BA2">
+                        <li class="nav-item"style="background-color: #F29BA2">
+                            <a class="nav-link" th:href="@{/login}"style="background-color: #F29BA2">
                                 <i class="fas fa-sign-in-alt"></i>
                             </a>
                         </li>
                     </ul>
 
-                    <ul class="navbar-nav" sec:authorize="isAuthenticated()">
-                        <li class="nav-item my-auto">
+                    <ul class="navbar-nav" sec:authorize="isAuthenticated()"style="background-color: #F29BA2">
+                        <li class="nav-item my-auto"style="background-color: #F29BA2">
                             <form method="post" th:action="@{/logout}">
                                 <button class="btn btn-dark">
                                     <i class="fas fa-sign-out-alt"></i>
                                 </button>
-
                             </form>
                         </li>
                     </ul>
