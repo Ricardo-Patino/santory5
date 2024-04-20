@@ -6,38 +6,38 @@
         <title>Santory</title>
     </head>
     <body>
-        <section th:fragment="listadoProductos" id="productos">
+        <section th:fragment="listadonuevaColeccion" id="nuevaColeccion">
             <div class="container">
                 <div class="row row-cols-2" >
-                    <h2 class="inline"> Nuestros Productos </h2>
+                    <h2 class="inline"> Nuestra Nueva Coleccion </h2>
                     <div id="resultsBlock"></div></div>
                 <div class="row row-cols-3" 
-                     th:if="${productos != null and !productos.empty}">
-                    <div class="card" th:each="producto : ${productos}">
+                     th:if="${nuevaColeccion != null and !nuevaColeccion.empty}">
+                    <div class="card" th:each="nuevaColeccion : ${nuevacolecciones}">
                         <div class="card-body">
                             <h5 class="card-title"> Descripción </h5>
                             <figure>
-                                <img th:src="@{${nuevacoleccion.rutaImagen}}" height="200"/>
-                                <figcaption>[[${nuevacoleccion.precio}+' ('+${nuevacoleccion.existencias}+')']]
+                                <img th:src="@{${nuevaColeccion.rutaImagen}}" height="200"/>
+                                <figcaption>[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]
                                 </figcaption>
                             </figure>
                             <form>
-                                <input type="hidden" name="texto" th:value="${nuevacoleccion.idnuevacoleccion}"/>
-                                <input type="hidden" name="texto" th:value="${nuevacoleccion.existencias}"/>
+                                <input type="hidden" name="texto" th:value="${nuevaColeccion.id_nuevacoleccion}"/>
+                                <input type="hidden" name="texto" th:value="${nuevaColeccion.existencias}"/>
                                 <button class="btn btn-ligth" id="addCar" 
                                         name="addCar" onclick="addCard(this.form)" 
                                         type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
-                            <p class="card-text">[[${nuevacoleccion.detalle}]]</p>                            
+                            <p class="card-text">[[${nuevaColeccion.descripcion}]]</p>                            
                         </div>
                     </div>
                 </div>
-                <div th:if="${productos == null or productos.empty}">
+                <div th:if="${nuevaColeccion == null or nuevaColeccion.empty}">
                     Carrito vacío</div>
             </div>
         </section>
 
-        <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(ItemNuevaColecciones)}">            
+        <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
             <form action="/carrito/listado">
                 <button
                     type="submit"
@@ -54,17 +54,17 @@
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Productos en el carrito</h4>
+                                <h4>Nueva Coleccion en el carrito</h4>
                             </div>
                             <div th:if="${items != null and !items.empty}">
                                 <table class="table table-stryped">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>#</th>
-                                            <th>[[#{nuevacoleccion.descripcion}]]</th>
-                                            <th>[[#{nuevacoleccion.precio}]]</th>
-                                            <th>[[#{nuevacoleccion.cantidad}]]</th>
-                                            <th>[[#{nuevacoleccion.total}]]</th>
+                                            <th>[[#{nuevaColeccion.descripcion}]]</th>
+                                            <th>[[#{nuevaColeccion.precio}]]</th>
+                                            <th>[[#{carrito.cantidad}]]</th>
+                                            <th>[[#{carrito.total}]]</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -72,18 +72,18 @@
                                     <tbody>
                                         <tr th:each="item, contador : ${items}">
                                             <td>[[${contador.count}]]</td>
-                                            <td>[[${itemnuevacoleccion.descripcion}]]</td>
-                                            <td class="text-end">[[${itemnuevacoleccion.precio}]]</td>
-                                            <td class="text-center">[[${itemnuevacoleccion.cantidad}]]</td>
-                                            <td class="text-center">[[${itemnuevacoleccion.cantidad*itemnuevacoleccion.precio}]]</td>
+                                            <td>[[${item.descripcion}]]</td>
+                                            <td class="text-end">[[${item.precio}]]</td>
+                                            <td class="text-center">[[${item.cantidad}]]</td>
+                                            <td class="text-center">[[${item.cantidad*item.precio}]]</td>
                                             <td>
-                                                <a th:href="@{/carrito/eliminar/}+${itemnuevacoleccion.idnuevacoleccion}"
+                                                <a th:href="@{/carrito/eliminar/}+${item.id_nuevacoleccion}"
                                                    class="btn btn-danger">
                                                     <i class='fas fa-trash'></i> Eliminar
                                                 </a>
                                             </td>
                                             <td>
-                                                <a th:href="@{/carrito/modificar/}+${itemnuevacoleccion.idnuevacoleccion}"
+                                                <a th:href="@{/carrito/modificar/}+${item.id_nuevacoleccion}"
                                                    class="btn btn-success">
                                                     <i class='fas fa-pencil'></i> Actualizar
                                                 </a>

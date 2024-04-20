@@ -28,4 +28,6 @@ public class Venta implements Serializable {
         this.precio = precio;
         this.cantidad = cantidad;
     }
+
+    
 }

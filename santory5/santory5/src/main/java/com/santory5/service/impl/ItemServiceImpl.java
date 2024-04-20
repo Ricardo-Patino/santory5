@@ -5,10 +5,9 @@ import com.santory5.dao.VentaDao;
 import com.santory5.domain.nuevaColeccion;
 import com.santory5.domain.Usuario;
 import com.santory5.domain.Factura;
-import com.santory5.domain.ItemNuevaColeccion;
+import com.santory5.domain.Item;
 import com.santory5.domain.Venta;
 import com.santory5.service.UsuarioService;
-import com.santory5.service.ItemNuevaColeccionService;
 import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,20 +15,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.santory5.dao.nuevaColeccionDao;
+import com.santory5.service.ItemService;
 
 @Service
-public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService {
+public class ItemServiceImpl implements ItemService {
 
     @Override
-    public List<ItemNuevaColeccion> gets() {
-        return ItemNuevaColecciones;
+    public List<Item> gets() {
+        return Itemes;
     }
 
     //Se usa en el addCarrito... agrega un elemento
     @Override
-    public void save(ItemNuevaColeccion itemnuevacoleccion) {
+    public void save(Item itemnuevacoleccion) {
         boolean existe = false;
-        for (ItemNuevaColeccion i : ItemNuevaColecciones) {
+        for (Item i : Itemes) {
             //Busca si ya existe el producto en el carrito
             if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 //Valida si aún puede colocar un item adicional -segun existencias-
@@ -43,16 +43,16 @@ public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService 
         }
         if (!existe) {//Si no está el producto en el carrito se agrega cantidad =1.            
             itemnuevacoleccion.setCantidad(1);
-            ItemNuevaColecciones.add(itemnuevacoleccion);
+            Itemes.add(itemnuevacoleccion);
         }
     }
 
     //Se usa para eliminar un producto del carrito
     @Override
-    public void delete(ItemNuevaColeccion itemnuevacoleccion) {
+    public void delete(Item itemnuevacoleccion) {
         var posicion = -1;
         var existe = false;
-        for (ItemNuevaColeccion i : ItemNuevaColecciones) {
+        for (Item i : Itemes) {
             ++posicion;
             if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 existe = true;
@@ -60,14 +60,14 @@ public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService 
             }
         }
         if (existe) {
-            ItemNuevaColecciones.remove(posicion);
+            Itemes.remove(posicion);
         }
     }
 
     //Se obtiene la información de un producto del carrito... para modificarlo
     @Override
-    public ItemNuevaColeccion get(ItemNuevaColeccion itemnuevacoleccion) {
-        for (ItemNuevaColeccion i : ItemNuevaColecciones) {
+    public Item get(Item itemnuevacoleccion) {
+        for (Item i : Itemes) {
             if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 return i;
             }
@@ -77,8 +77,8 @@ public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService 
 
     //Se usa en la página para actualizar la cantidad de productos
     @Override
-    public void actualiza(ItemNuevaColeccion itemnuevacoleccion) {
-        for (ItemNuevaColeccion i : ItemNuevaColecciones) {
+    public void actualiza(Item itemnuevacoleccion) {
+        for (Item i : Itemes) {
             if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 i.setCantidad(itemnuevacoleccion.getCantidad());
                 break;
@@ -123,7 +123,7 @@ public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService 
         factura = facturaDao.save(factura);
 
         double total = 0;
-        for (ItemNuevaColeccion i : ItemNuevaColecciones) {
+        for (Item i : Itemes) {
             System.out.println("Producto: " + i.getDescripcion()
                     + " Cantidad: " + i.getCantidad()
                     + " Total: " + i.getPrecio() * i.getCantidad());
@@ -136,6 +136,6 @@ public class ItemNuevaColeccionServiceImpl implements ItemNuevaColeccionService 
         }
         factura.setTotal(total);
         facturaDao.save(factura);
-        ItemNuevaColecciones.clear();
+        Itemes.clear();
     }
 }

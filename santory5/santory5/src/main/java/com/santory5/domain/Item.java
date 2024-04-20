@@ -5,13 +5,13 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class ItemNuevaColeccion extends nuevaColeccion {
+public class Item extends nuevaColeccion {
     private int cantidad; //Almacenar la cantidad de items de las Nuevas Colecciones
 
-    public ItemNuevaColeccion() {
+    public Item() {
     }
 
-    public ItemNuevaColeccion(nuevaColeccion nuevacoleccion) {
+    public Item(nuevaColeccion nuevacoleccion) {
         super.setId_nuevacoleccion(nuevacoleccion.getId_nuevacoleccion());
         super.setPrecio(nuevacoleccion.getPrecio());
         super.setDescripcion(nuevacoleccion.getDescripcion());
