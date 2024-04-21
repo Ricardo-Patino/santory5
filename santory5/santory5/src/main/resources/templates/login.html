@@ -13,7 +13,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header bg-success"><h2>[[#{login.login}]]</h2></div>
+                        <div class="card-header text-white "style="background-color: #1B3059"><h2>[[#{login.login}]]</h2></div>
                         <div class="card-body">
                             <form method="POST" th:action="@{/login}">
                                 <div class="form-group row my-3">
@@ -24,12 +24,10 @@
                                     <label class="col-md-5 my-auto" for="password"><i class="fas fa-key"></i>[[#{login.password}]]</label>
                                     <div class="col-md-7 my-auto"><input class="form-control" type="password" name="password" id="password"/></div></div>
                                 <div class="card-footer col text-center">
-                                    <button class="btn btn-primary" >
-                                        <a th:href="@{/registro/nuevo}" class="btn"><i class="fas fa-user-plus"></i> [[#{accion.registrar}]]</a></button>
-                                    <button class="btn btn-info" >                                        
-                                        <a th:href="@{/registro/recordar}" class="btn"><i class="fas fa-envelope"></i> [[#{accion.recordar}]]</a></button>
-                                    <button class="btn btn-success" type="submit">
-                                        <span class="btn"><i class="fas fa-sign-in-alt"></i>
+                                    <button class="btn btn-primary" style="background-color: #F29BA2; border-color: #F29BA2;">
+                                        <a th:href="@{/registro/nuevo}" class="btn"style="background-color: #F29BA2"><i class="fas fa-user-plus"style="background-color: #F29BA2"></i> [[#{accion.registrar}]]</a></button>
+                                    <button class="btn btn-success" type="submit"style="background-color: #F29BA2; border-color: #F29BA2;">
+                                        <span class="btn"style="background-color: #F29BA2"><i class="fas fa-sign-in-alt"></i>
                                             [[#{login.login}]]</span></button>
                                 </div>
                             </form>                            
