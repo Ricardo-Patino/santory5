@@ -17,19 +17,18 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 @RequestMapping("/nuevaColeccion")
 public class nuevaColeccionController {
-    
+
     @Autowired
     private nuevaColeccionService nuevaColeccionService;
 
     @GetMapping("/listado")
     public String inicio(Model model) {
         var nuevacolecciones = nuevaColeccionService.getnuevaColeccion(false);
-        System.out.println(nuevacolecciones);
         model.addAttribute("nuevacolecciones", nuevacolecciones);
         model.addAttribute("totalnuevacolecciones", nuevacolecciones.size());
         return "/nuevaColeccion/listado";
     }
-    
+
     @GetMapping("/nuevo")
     public String nuevaColeccionNuevo(nuevaColeccion nuevacoleccion) {
         return "/nuevaColeccion/modifica";
@@ -37,9 +36,9 @@ public class nuevaColeccionController {
 
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
-    
+
     @PostMapping("/guardar")
-    public String nuevaColeccionGuardar(nuevaColeccion nuevacoleccion) {        
+    public String nuevaColeccionGuardar(nuevaColeccion nuevacoleccion) {
 //        if (!imagenFile.isEmpty()) {
 //            nuevaColeccionService.save(nuevacoleccion);
 //            nuevacoleccion.setRutaImagen(
@@ -58,11 +57,11 @@ public class nuevaColeccionController {
         return "redirect:/nuevaColeccion/listado";
     }
 
-    @GetMapping("/modifica/{id_nuevacoleccion}")
+    @GetMapping("/modificar/{id_nuevacoleccion}")
     public String nuevaColeccionModificar(nuevaColeccion nuevacoleccion, Model model) {
         nuevacoleccion = nuevaColeccionService.getnuevaColeccions(nuevacoleccion);
         model.addAttribute("nuevacoleccion", nuevacoleccion);
         return "/nuevaColeccion/modifica";
     }
-    
+
 }

@@ -2,6 +2,7 @@ package com.santory5.controller;
 
 import com.santory5.domain.nuevaColeccion;
 import com.santory5.domain.Item;
+import com.santory5.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import com.santory5.service.nuevaColeccionService;
-import com.santory5.service.ItemService;
 
 @Controller
 public class CarritoController {
     @Autowired
-    private ItemService ItemService;
+    private ItemService itemService;
     @Autowired
     private nuevaColeccionService nuevaColeccionService;
     
@@ -28,10 +28,10 @@ public class CarritoController {
     //Para ver el carrito
     @GetMapping("/carrito/listado")
     public String inicio(Model model) {
-        var itemnuevacolecciones = ItemService.gets();
-        model.addAttribute("itemnuevacolecciones", itemnuevacolecciones);
+        var items = itemService.gets();
+        model.addAttribute("items", items);
         var carritoTotalVenta = 0;
-        for (Item i : itemnuevacolecciones) {
+        for (Item i : items) {
             carritoTotalVenta += (i.getCantidad() * i.getPrecio());
         }
         model.addAttribute("carritoTotal", 
@@ -39,16 +39,16 @@ public class CarritoController {
         return "/carrito/listado";
     }    
    
-    //Para Agregar un nuevacoleccion al carrito
+    //Para Agregar un producto al carrito
     @GetMapping("/carrito/agregar/{id_nuevacoleccion}")
-    public ModelAndView agregarItem(Model model, Item itemnuevacoleccion) {
-        Item itemnuevacoleccion2 = ItemService.get(itemnuevacoleccion);
-        if (itemnuevacoleccion2 == null) {
-            nuevaColeccion nuevacoleccion = nuevaColeccionService.getnuevaColeccions(itemnuevacoleccion);
-            itemnuevacoleccion2 = new Item(nuevacoleccion);
+    public ModelAndView agregarItem(Model model, Item item) {
+        Item item2 = itemService.get(item);
+        if (item2 == null) {
+            nuevaColeccion nuevaColeccion = nuevaColeccionService.getnuevaColeccions(item);
+            item2 = new Item(nuevaColeccion);
         }
-        nuevaColeccionService.save(itemnuevacoleccion2);
-        var lista = ItemService.gets();
+        itemService.save(item2);
+        var lista = itemService.gets();
         var totalCarritos = 0;
         var carritoTotalVenta = 0;
         for (Item i : lista) {
@@ -61,32 +61,32 @@ public class CarritoController {
         return new ModelAndView("/carrito/fragmentos :: verCarrito");
     }
 
-    //Para mofificar un nuevacoleccion del carrito
-    @GetMapping("/carrito/modificar/{id_nuevacoleccion}")
-    public String modificarItem(Item itemNuevaColeccion, Model model) {
-        itemNuevaColeccion = ItemService.get(itemNuevaColeccion);
-        model.addAttribute("itemNuevaColeccion", itemNuevaColeccion);
+    //Para mofificar un producto del carrito
+    @GetMapping("/carrito/modificar/{idProducto}")
+    public String modificarItem(Item item, Model model) {
+        item = itemService.get(item);
+        model.addAttribute("item", item);
         return "/carrito/modificar";
     }
 
     //Para eliminar un elemento del carrito
-    @GetMapping("/carrito/eliminar/{id_nuevacoleccion}")
-    public String eliminarItem(Item itemNuevaColeccion) {
-        ItemService.delete(itemNuevaColeccion);
+    @GetMapping("/carrito/eliminar/{idProducto}")
+    public String eliminarItem(Item item) {
+        itemService.delete(item);
         return "redirect:/carrito/listado";
     }
 
-    //Para actualizar un nuevacoleccion del carrito (cantidad)
+    //Para actualizar un producto del carrito (cantidad)
     @PostMapping("/carrito/guardar")
-    public String guardarItem(Item itemNuevaColeccion) {
-        ItemService.actualiza(itemNuevaColeccion);
+    public String guardarItem(Item item) {
+        itemService.actualiza(item);
         return "redirect:/carrito/listado";
     }
 
-    //Para facturar los nuevacoleccions del carrito... no implementado...
+    //Para facturar los productos del carrito... no implementado...
     @GetMapping("/facturar/carrito")
     public String facturarCarrito() {
-        ItemService.facturar();
+        itemService.facturar();
         return "redirect:/";
     }
 }

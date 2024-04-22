@@ -78,7 +78,7 @@
         </section>
 
         <!-- 3 Sección principal para mostrar la informaccion de la entidad categoria -->
-        <section th:fragment="listadonuevaColeccion" id="nuevaColeccion">
+        <section th:fragment="listadonuevaColeccion" id="nuevacoleccionesoleccion">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -93,6 +93,17 @@
                                         <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
                                             Ver detalle 
+                                        </button>
+                                        
+                                        <button>
+                                             <a th:href="@{/nuevaColeccion/modificar/}+${nuevaColeccion.id_nuevacoleccion}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a>
+                                        </button>
+                                        <button>
+                                            <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.id_nuevacoleccion}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> eliminar</a>
                                         </button>
                                     </div>
                                 </div>
@@ -114,7 +125,7 @@
                                             <div class="col">
                                                 <h5 th:text="${nuevaColeccion.descripcion}"></h5>
                                                 <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
-                                                <a th:href="@{/carrito/listado}" class="btn btn-success">Agregar al carrito</a>
+                                                <a th:href="@{/carrito/agregar}" class="btn btn-success">Agregar al carrito</a>
                                             </div>
 
                                         </div>
@@ -195,7 +206,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.id_nuevacoleccionS}"
+                        <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.id_nuevacoleccion}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>

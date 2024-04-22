@@ -68,30 +68,28 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                .requestMatchers("/","/registro/nuevo", "/index", "/errores/**", "/js/**", "/webjars/**")
+                .requestMatchers("/", "/registro/nuevo", 
+                        "/index", "/errores/**", "/js/**", 
+                        "/webjars/**","/carrito/**")
                 .permitAll()
                 .requestMatchers(
                         "/nuevaColeccion/nuevo",
-                        "/nuevaColeccion/guardar", "/nuevaColeccion/modificar/",
+                        "/nuevaColeccion/guardar", "/nuevaColeccion/modifica/",
                         "/nuevaColeccion/eliminar/",
                         "/calzadoFemenino/nuevo", "/calzadoFemenino/guardar",
                         "/calzadoFemenino/modificar/", "/calzadoFemenino/eliminar/",
                         "/promociones/nuevo",
                         "/promociones/guardar", "/promociones/modificar/",
-                        "/promociones/eliminar/", "/puntosDeVenta/listado",
+                        "/promociones/eliminar/",
                         "/puntosDeVenta/nuevo", "/puntosDeVenta/guardar",
                         "/puntosDeVenta/modificar/", "/puntosDeVenta/eliminar/"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/calzadoFemenino/listado",
-                        "/promociones/listado","/nuevaColeccion/listado"
+                        "/promociones/listado", "/nuevaColeccion/listado"
                 ).hasAnyRole("ADMIN", "VENDEDOR")
-                .requestMatchers("/nuevaColeccion/listado","/carrito/listado")
+                .requestMatchers("/nuevaColeccion/listado", "/puntosDeVenta/listado")
                 .hasAnyRole("ADMIN", "VENDEDOR", "USER")
-                
-                .requestMatchers("/calzadoFemenino/listado", "/nuevaColeccion/listado",
-                    "/promociones/listado", "/puntosDeVenta/listado", "/carrito/listado")
-                .hasAnyRole("USER")
                 )
                 .formLogin((form) -> form
                 .loginPage("/login").permitAll())
