@@ -7,10 +7,7 @@ package com.santory5.dao;
 import com.santory5.domain.Factura;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-/**
- *
- * @author rsola
- */
+
 public interface FacturaDao extends JpaRepository<Factura, Long>{
     
 }
