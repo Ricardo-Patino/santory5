@@ -10,11 +10,11 @@
         <section th:fragment="listadonuevaColeccion" id="nuevacolecciones">
             <div class="container">
                 <div class="row row-cols-2">
-       
+
                     <div id="resultsBlock"></div>
                 </div>
                 <div class="row row-cols-3" th:if="${nuevacolecciones != null and !nuevacolecciones.empty}">
-                   
+
                     <div class="card" th:each="nuevaColeccion : ${nuevacolecciones}">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${nuevaColeccion.descripcion}"></h5>
@@ -27,7 +27,7 @@
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.existencias}"/>
                                 <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)" type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
-                                                   
+
                         </div>
                     </div>
                 </div>
@@ -37,6 +37,7 @@
             </div>
         </section>
        
+
 
         <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
             <form action="/carrito/listado">
@@ -127,5 +128,55 @@
                 </div>
             </div>
         </section>
+
+        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+        <section th:fragment="modificaItem">
+            <div class="row-cols-6 p-3">
+                <a th:href="@{/carrito/listado}" class="btn btn-primary">
+                    <i class="fas fa-reply"></i> [[#{accion.regresar}]]
+                </a>
+            </div>
+            <div class="row row-cols-2">
+                <div class="card">
+                    <div class="card-header">[[#{carrito.datos}]]</div>
+                    <div class="card-body">
+                        <h5 class="card-title">[[${item.nombreProducto}]]</h5>
+                        <h6 class="card-subtitle mb-2 text-end">
+                            [[${item.precio}]]
+                        </h6>
+                        <p class="card-text">[[${item.descripcion}]]</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <figure>
+                            <img th:src="@{${item.rutaImagen}}" alt="alt" height="200"/>
+                        </figure>
+                        <div class="row">
+                            <form
+                                th:action="@{/carrito/guardar}"
+                                method="post"
+                                th:object="${item}"
+                                >
+                                <input
+                                    type="hidden"
+                                    name="id_nuevacoleccion"
+                                    th:field="*{id_nuevacoleccion}"
+                                    />
+                                <input
+                                    type="number"
+                                    name="cantidad"
+                                    th:field="*{cantidad}"
+                                    />
+                                <button class="btn btn-success" type="submit" name="guardar">
+                                    <i class="fas fa-save"></i> [[#{accion.guardar}]]
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </body>
 </html>

@@ -94,6 +94,7 @@
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
                                             Ver detalle 
                                         </button>
+                                        
                                         <button>
                                             <a th:href="@{/nuevaColeccion/modificar/}+${nuevaColeccion.id_nuevacoleccion}"
                                                class="btn btn-success">

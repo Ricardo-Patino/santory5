@@ -62,7 +62,7 @@ public class CarritoController {
     }
 
     //Para mofificar un producto del carrito
-    @GetMapping("/carrito/modificar/{idProducto}")
+    @GetMapping("/carrito/modificar/{id_nuevacoleccion}")
     public String modificarItem(Item item, Model model) {
         item = itemService.get(item);
         model.addAttribute("item", item);
@@ -70,7 +70,7 @@ public class CarritoController {
     }
 
     //Para eliminar un elemento del carrito
-    @GetMapping("/carrito/eliminar/{idProducto}")
+    @GetMapping("/carrito/eliminar/{id_nuevacoleccion}")
     public String eliminarItem(Item item) {
         itemService.delete(item);
         return "redirect:/carrito/listado";
