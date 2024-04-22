@@ -6,42 +6,43 @@
         <title>Santory</title>
     </head>
     <body>
+
         <section th:fragment="listadonuevaColeccion" id="nuevacolecciones">
             <div class="container">
-                <div class="row row-cols-2" >
-                    <h2 class="inline">Nuestros Productos</h2>
-                    <div id="resultsBlock"></div></div>
-                <div class="row row-cols-3" 
-                     th:if="${nuevacolecciones != null and !nuevacolecciones.empty}">
+                <div class="row row-cols-2">
+       
+                    <div id="resultsBlock"></div>
+                </div>
+                <div class="row row-cols-3" th:if="${nuevacolecciones != null and !nuevacolecciones.empty}">
+                   
                     <div class="card" th:each="nuevaColeccion : ${nuevacolecciones}">
                         <div class="card-body">
-                            <h5 class="card-title">Detalle</h5>
+                            <h5 class="card-title" th:text="${nuevaColeccion.descripcion}"></h5>
                             <figure>
-                                <img th:src="@{${nuevaColeccion.rutaImagen}}" height="200"/>
-                                <figcaption>[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]
-                                </figcaption>
+                                <img th:src="@{${nuevaColeccion.rutaImagen}}" style="width: 100%;" class="card-img-top"/>
+                                <figcaption>[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]</figcaption>
                             </figure>
                             <form>
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.id_nuevacoleccion}"/>
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.existencias}"/>
-                                <button class="btn btn-ligth" id="addCar" 
-                                        name="addCar" onclick="addCard(this.form)" 
-                                        type="button"><i class="fas fa-cart-plus"></i></button>
+                                <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)" type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
-                            <p class="card-text">Descripcion</p>                            
+                                                   
                         </div>
                     </div>
                 </div>
                 <div th:if="${nuevacolecciones == null or nuevacolecciones.empty}">
-                    Carrito vacio</div>
+                    Carrito vacio
+                </div>
             </div>
         </section>
+       
 
         <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
             <form action="/carrito/listado">
                 <button
                     type="submit"
-                    class="btn btn-primary">
+                    class="btn"style="background-color: #F29BA2; border-color: #F29BA2;">
                     <i class="fas fa-cart-plus"></i>
                     [[#{carrito.verCarrito}]] [[${listaTotal}]]
                 </button>
@@ -98,7 +99,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center bg-primary text-white mb-3">
+                        <div class="card text-center text-white mb-3"style="background-color: #1B3059; border-color: #1B3059;">
                             <div class="card-body">
                                 <h3>[[#{carrito.totalCompra}]]</h3>
                                 <h4 class="fs-4">
@@ -106,18 +107,18 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="card text-center bg-success text-white mb-3">
+                        <div class="card text-center text-white mb-3"style="background-color: #F29BA2; border-color: #F29BA2;">
                             <div class="card-body">
                                 <a th:href="@{/}"
-                                   class="btn btn-success">
+                                   class="btn"style="background-color: #F29BA2; border-color: #F29BA2;">
                                     <i class='fas fa-reply'></i> [[#{carrito.seguirComprando}]]
                                 </a>
                             </div>
                         </div>
-                        <div class="card text-center bg-info text-white mb-3">
+                        <div class="card text-center  text-white mb-3"style="background-color: #F29BA2; border-color: #F29BA2;">
                             <div class="card-body">
                                 <a th:href="@{/facturar/carrito}"
-                                   class="btn btn-info">
+                                   class="btn "style="background-color: #F29BA2; border-color: #F29BA2;">
                                     <i class='fas fa-fordward'></i> [[#{carrito.facturar}]]
                                 </a>
                             </div>
