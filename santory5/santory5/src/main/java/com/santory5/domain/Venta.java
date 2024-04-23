@@ -15,16 +15,16 @@ public class Venta implements Serializable {
     @Column(name="id_venta")
     private Long idVenta;
     private Long idFactura;
-    private Long idnuevacoleccion;    
+    private Long id_nuevacoleccion;    
     private double precio;
     private int cantidad;    
     
     public Venta() {
     }
 
-    public Venta(Long idFactura, Long idnuevacoleccion, double precio, int cantidad) {
+    public Venta(Long idFactura, Long id_nuevacoleccion, double precio, int cantidad) {
         this.idFactura = idFactura;
-        this.idnuevacoleccion = idnuevacoleccion;
+        this.id_nuevacoleccion = id_nuevacoleccion;
         this.precio = precio;
         this.cantidad = cantidad;
     }

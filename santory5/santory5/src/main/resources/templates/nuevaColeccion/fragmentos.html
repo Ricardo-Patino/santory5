@@ -154,7 +154,7 @@
                           th:object="${nuevaColeccion}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="idnuevaColeccion" th:field="*{id_nuevacoleccion}"/>
+                        <input type="hidden" name="id_nuevaColeccion" th:field="*{id_nuevacoleccion}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
                         <section th:replace="~{nuevaColeccion/fragmentos :: botonesEditar}"/>
                         <div id=details>
