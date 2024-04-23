@@ -3,21 +3,21 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://thymeleaf.org/extras/spring-security">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>santory</title>        
+        <title>Santory</title>        
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
         <div class="container">
             <div class="row"></div>
             <div class="row row-cols-6" >
-                <a th:href="@{/}" class="btn btn-primary">
+                <a th:href="@{/}" class="btn"style="background-color: #F29BA2">
                     <i class='fas fa-reply'></i> Regresar</a>
             </div>
             <div class="row"></div>
             <div class="row row-cols-3">
                 <div class="card">
                     <div class="card-header text-center">
-                        Reporte Clientes
+                        Reporte Usuarios
                     </div>
                     <div class="card-body">
                         <a th:href="@{/reportes/usuariossantory?tipo=vPdf}" class="btn btn-primary">
@@ -34,78 +34,97 @@
                         </a>
                     </div>
                 </div>
+                <!-- <div class="card">
+                <div class="card-header text-center">
+                                        Reporte Puntos de Ventas
+                </div>
+                <div class="card-body">
+                <a th:href="@{/reportes/puntosDeVenta?tipo=vPdf}" class="btn btn-primary">
+                <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>
+                </a>
+                <a th:href="@{/reportes/puntosDeVenta?tipo=Pdf}" class="btn btn-success">
+                <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>
+                </a>
+                <a th:href="@{/reportes/puntosDeVenta?tipo=Xls}" class="btn btn-warning">
+                <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>
+                </a>
+                <a th:href="@{/reportes/puntosDeVenta?tipo=Csv}" class="btn btn-danger">
+                <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>
+                </a>
+                </div>
+                </div>-->
                 <div class="card">
                     <div class="card-header text-center">
-                        Reporte ventas
+                        Reporte Calzado Femenino
                     </div>
                     <div class="card-body">
-                        <a th:href="@{/reportes/ventas?tipo=vPdf}" class="btn btn-primary">
+                        <a th:href="@{/reportes/calzadoFemenino?tipo=vPdf}" class="btn btn-primary">
                             <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>
                         </a>
-                        <a th:href="@{/reportes/ventas?tipo=Pdf}" class="btn btn-success">
+                        <a th:href="@{/reportes/calzadoFemenino?tipo=Pdf}" class="btn btn-success">
                             <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>
                         </a>
-                        <a th:href="@{/reportes/ventas?tipo=Xls}" class="btn btn-warning">
+                        <a th:href="@{/reportes/calzadoFemenino?tipo=Xls}" class="btn btn-warning">
                             <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>
                         </a>
-                        <a th:href="@{/reportes/ventas?tipo=Csv}" class="btn btn-danger">
+                        <a th:href="@{/reportes/calzadoFemenino?tipo=Csv}" class="btn btn-danger">
                             <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>
                         </a>
                     </div>
-                </div>                
-                <div class="card">
-                    <div class="card-header text-center">
-                        Ventas totales
-                    </div>
-                    <div class="card-body">
-                        <div class="card-header">
-                            <h4>Ventas Totales</h4>
-                        </div>
-                        <div class="card-body">
-                            <form method="GET"
-                                  th:action="@{/reportes/ventasTotales}" 
-                                  class="was-validated">
-
-                                <div class="mb-3">
-                                    <label for="fechaInicio">Fecha Inicio</label>
-                                    <input type="date" class="form-control" 
-                                           name="fechaInicio"
-                                           th:value="${fechaInicio}"
-                                           required="true"/>
-                                </div>                                
-                                <div class="mb-3">
-                                    <label for="fechaFin">Fecha Fin</label>
-                                    <input type="date" class="form-control" 
-                                           name="fechaFin"
-                                           th:value="${fechaFin}"
-                                           required="true"/>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-3 d-grid">
-                                        <button name="tipo" value="vPdf" type="submit" class="btn btn-primary">
-                                            <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3 d-grid">    
-                                        <button name="tipo" value="Pdf" type="submit" class="btn btn-success">
-                                            <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3 d-grid">    
-                                        <button name="tipo" value="Xls" type="submit" class="btn btn-warning">
-                                            <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>
-                                        </button>
-                                    </div>
-                                    <div class="col-md-3 d-grid">    
-                                        <button name="tipo" value="Xls" type="submit" class="btn btn-danger">
-                                            <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
+                <!--- <div class="card">
+                <div class="card-header text-center">
+                                        Ventas totales
+                </div>
+                <div class="card-body">
+                <div class="card-header">
+                <h4>Ventas Totales</h4>
+                </div>
+                <div class="card-body">
+                <form method="GET"
+                                                  th:action="@{/reportes/ventasTotales}" 
+                                                  class="was-validated">
+                 
+                                                <div class="mb-3">
+                <label for="fechaInicio">Fecha Inicio</label>
+                <input type="date" class="form-control" 
+                                                           name="fechaInicio"
+                                                           th:value="${fechaInicio}"
+                                                           required="true"/>
+                </div>                                
+                <div class="mb-3">
+                <label for="fechaFin">Fecha Fin</label>
+                <input type="date" class="form-control" 
+                                                           name="fechaFin"
+                                                           th:value="${fechaFin}"
+                                                           required="true"/>
+                </div>
+                <div class="row">
+                <div class="col-md-3 d-grid">
+                <button name="tipo" value="vPdf" type="submit" class="btn btn-primary">
+                <i class='fas fa-eye'></i><i class='fas fa-file-pdf'></i>
+                </button>
+                </div>
+                <div class="col-md-3 d-grid">    
+                <button name="tipo" value="Pdf" type="submit" class="btn btn-success">
+                <i class='fas fa-download'></i><i class='fas fa-file-pdf'></i>
+                </button>
+                </div>
+                <div class="col-md-3 d-grid">    
+                <button name="tipo" value="Xls" type="submit" class="btn btn-warning">
+                <i class='fas fa-download'></i><i class='fas fa-file-excel'></i>
+                </button>
+                </div>
+                <div class="col-md-3 d-grid">    
+                <button name="tipo" value="Xls" type="submit" class="btn btn-danger">
+                <i class='fas fa-download'></i><i class='fas fa-file-csv'></i>
+                </button>
+                </div>
+                </div>
+                </form>
+                </div>
+                </div>
+                </div>-->
             </div>
         </div>
 
