@@ -20,13 +20,16 @@
                             <h5 class="card-title" th:text="${nuevaColeccion.descripcion}"></h5>
                             <figure>
                                 <img th:src="@{${nuevaColeccion.rutaImagen}}" style="width: 100%;" class="card-img-top"/>
-                                <figcaption>[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]</figcaption>
+                                <figcaption><p>₡[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]</p></figcaption>
                             </figure>
                             <form>
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.id_nuevacoleccion}"/>
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.existencias}"/>
                                 <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)" type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
+                                Ver detalle 
+                            </button>
 
                         </div>
                     </div>
@@ -35,8 +38,30 @@
                     Carrito vacio
                 </div>
             </div>
+            <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <img th:src="${nuevaColeccion.rutaImagen}" alt="Imagen del zapato" class="img-fluid">
+                                </div>
+                                <div class="col">
+                                    <h5 th:text="${nuevaColeccion.descripcion}"></h5>
+                                    <p th:text="'Precio: '+${nuevaColeccion.precio}"></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
-       
+
 
 
         <div th:fragment="verCarrito" th:unless="${#lists.isEmpty(listaItems)}">            
