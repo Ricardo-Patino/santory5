@@ -8,10 +8,10 @@
         <header th:replace="~{layout/plantilla :: header}"/>
 
         <section th:replace="~{nuevaColeccion/fragmentos :: botonesAgregar}"/>
-        <section th:replace="~{carrito/fragmentos :: listadonuevaColeccion}"/>
+        <section th:replace="~{carrito/fragmentos :: listadonuevaColeccion}"sec:authorize="hasRole('ROLE_VENDEDOR')"/>
 
         <section th:replace="~{nuevaColeccion/fragmentos :: agregarnuevaColeccion}"/> 
-        <section th:replace="~{nuevaColeccion/fragmentos :: listadonuevaColeccion}"/>
+        <section th:replace="~{nuevaColeccion/fragmentos :: listadonuevaColeccion}"sec:authorize="hasRole('ROLE_ADMIN')"/>
 
         <footer th:replace="~{layout/plantilla :: footer}"/>      
 
