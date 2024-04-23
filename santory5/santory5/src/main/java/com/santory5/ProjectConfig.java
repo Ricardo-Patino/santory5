@@ -82,7 +82,8 @@ public class ProjectConfig implements WebMvcConfigurer {
                         "/promociones/guardar", "/promociones/modificar/",
                         "/promociones/eliminar/",
                         "/puntosDeVenta/nuevo", "/puntosDeVenta/guardar",
-                        "/puntosDeVenta/modificar/", "/puntosDeVenta/eliminar/"
+                        "/puntosDeVenta/modificar/", "/puntosDeVenta/eliminar/",
+                        "/reportes/**"
                 ).hasRole("ADMIN")
                 .requestMatchers(
                         "/calzadoFemenino/listado",
