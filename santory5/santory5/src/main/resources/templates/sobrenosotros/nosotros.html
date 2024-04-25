@@ -7,9 +7,9 @@
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
 
-        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-danger bg-opacity-10">
+        <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center"style="background-color: #F29BA2;color:white">
             <div class="col-md-5 p-lg-5 mx-auto my-5">
-                <h1 class="display-5 fw-bold text-body-emphasis">Santory By Reynaldo</h1>
+                <h1 class="display-5 fw-bold text-body-emphasis"style="color:white">Santory By Reynaldo</h1>
                 <p class="lead fw-normal mt-3">Santory By Reynaldo es una marca costarricense con sus
                     inicios en el año 2004 como un proyecto de emprendimiento
                     dedicado al diseño y confección de calzado femenino. En sus
@@ -49,8 +49,6 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <h2 class="text-body-emphasis fw-bold text-center">Nuestras Redes</h2>
-                    <p class="lh-lg">Santory by Reynaldo </p>
-                    <p class="lh-lg">santorybyreynaldo</p>
                     <div class="row g-2">
                         <div class="col-6 text-center">
                             <a href="https://www.facebook.com/SantoryByReynaldo/" class="fs-5 fw-bold text-decoration-none link-secondary"><i class="fa-brands fa-square-facebook"></i></i> Santory by Reynaldo</a>
@@ -82,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <footer th:replace= "~{layout/plantilla :: footer}"/>
 
     </body>
 </html>
