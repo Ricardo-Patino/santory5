@@ -13,7 +13,7 @@
                     <div class="col-md-3">   
                         <button 
                             type="button" 
-                            class="btn btn-primary btn-block" 
+                            class="btn" style="background-color: #1B3059;color:white"
                             data-bs-toggle="modal" 
                             data-bs-target="#agregarCategoria">
                             <i class="fas fa-plus"></i> Agregar Calzado Femenino
@@ -91,13 +91,13 @@
                                     <div class="card-body">
                                         <h5 th:text="${nuevaColeccion.descripcion}" class="card-title"></h5>
                                         <p>₡<span th:text="${nuevaColeccion.precio}" class="card-text"></span></p>
-                                        
+
 
                                         <div class="d-flex mt-3" sec:authorize="hasRole('ROLE_ADMIN')">
-                                            <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.id_nuevacoleccion}"
+                                            <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.idNuevaColeccion}"
                                                class="btn btn-danger flex-shrink-0 me-3">
                                                 <i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                            <a th:href="@{/nuevaColeccion/modificar/}+${nuevaColeccion.id_nuevacoleccion}" 
+                                            <a th:href="@{/nuevaColeccion/modificar/}+${nuevaColeccion.idNuevaColeccion}" 
                                                class="btn btn-success flex-shrink-0">
                                                 <i class="fa-solid fa-pen-to-square"></i> [[#{accion.actualizar}]]</a>
                                         </div>
@@ -106,11 +106,11 @@
                             </div>
                         </div>
                         <!-- Modales para mostrar el detalle de cada zapato -->
-                        <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
+                        <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.idNuevaColeccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.idNuevaColeccion}" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
+                                        <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.idNuevaColeccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -129,7 +129,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Fin de modales -->
                     </div>
                 </div>
             </div>
@@ -146,7 +145,7 @@
                           th:object="${nuevaColeccion}"
                           class="was-validated"                          
                           enctype="multipart/form-data">
-                        <input type="hidden" name="id_nuevaColeccion" th:field="*{id_nuevacoleccion}"/>
+                        <input type="hidden" name="idNuevaColeccion" th:field="*{idNuevaColeccion}"/>
                         <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
                         <section th:replace="~{nuevaColeccion/fragmentos :: botonesEditar}"/>
                         <div id=details>
@@ -173,20 +172,46 @@
                                                            th:field="*{activo}">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="imagen">Ruta Imagen</label>
-                                                    <input class="form-control" type="file" name="imagenFile"
-                                                           onchange="readURL(this);" />
-                                                    <img id="blah" th:src="@{${nuevaColeccion.rutaImagen}}" alt="your image" height="200"/>
+                                                    <label for="rutaImagen">Ruta Imagen</label>
+                                                    <input type="text" class="form-control" 
+                                                           name="rutaImagen" th:field="*{rutaImagen}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripcion">Precio</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="precio" th:field="*{precio}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripcion">Cantidad de Colores</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="cantidad_colores" th:field="*{cantidad_colores}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="descripcion">Talla</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="talla" th:field="*{talla}"
+                                                           required="true">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="existencias">Existencias</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="existencias" th:field="*{existencias}"
+                                                           required="true">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </section>
+
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
         <section th:fragment="botonesEditar">
@@ -198,7 +223,7 @@
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
-                        <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.id_nuevacoleccion}"
+                        <a th:href="@{/nuevaColeccion/eliminar/}+${nuevaColeccion.idNuevaColeccion}"
                            class="btn btn-danger">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>

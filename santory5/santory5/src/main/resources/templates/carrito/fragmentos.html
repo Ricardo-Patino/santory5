@@ -23,11 +23,11 @@
                                 <figcaption><p>₡[[${nuevaColeccion.precio}+' ('+${nuevaColeccion.existencias}+')']]</p></figcaption>
                             </figure>
                             <form>
-                                <input type="hidden" name="texto" th:value="${nuevaColeccion.id_nuevacoleccion}"/>
+                                <input type="hidden" name="texto" th:value="${nuevaColeccion.idNuevaColeccion}"/>
                                 <input type="hidden" name="texto" th:value="${nuevaColeccion.existencias}"/>
                                 <button class="btn btn-ligth" id="addCar" name="addCar" onclick="addCard(this.form)" type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#detalleZapatoModal'+${nuevaColeccion.idNuevaColeccion}" th:data-descripcion="${nuevaColeccion.descripcion}" th:data-precio="${nuevaColeccion.precio}">
                                 Ver detalle 
                             </button>
 
@@ -38,11 +38,11 @@
                     Carrito vacio
                 </div>
             </div>
-            <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.id_nuevacoleccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" aria-hidden="true">
+            <div th:each="nuevaColeccion : ${nuevacolecciones}" class="modal fade" th:id="'detalleZapatoModal'+${nuevaColeccion.idNuevaColeccion}" tabindex="-1" aria-labelledby="'detalleZapatoModalLabel'+${nuevaColeccion.idNuevaColeccion}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.id_nuevacoleccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
+                            <h5 class="modal-title" th:id="'detalleZapatoModalLabel'+${nuevaColeccion.idNuevaColeccion}" th:text="'Detalle del Zapato - '+${nuevaColeccion.descripcion}"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -104,15 +104,9 @@
                                             <td class="text-center">[[${item.cantidad}]]</td>
                                             <td class="text-center">[[${item.cantidad*item.precio}]]</td>
                                             <td>
-                                                <a th:href="@{/carrito/eliminar/}+${item.id_nuevacoleccion}"
+                                                <a th:href="@{/carrito/eliminar/}+${item.idNuevaColeccion}"
                                                    class="btn btn-danger">
                                                     <i class='fas fa-trash'></i> [[#{accion.eliminar}]]
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/carrito/modificar/}+${itemid_nuevacoleccion}"
-                                                   class="btn btn-success">
-                                                    <i class='fas fa-pencil'></i> [[#{accion.actualizar}]]
                                                 </a>
                                             </td>
                                         </tr>
@@ -185,8 +179,8 @@
                                 >
                                 <input
                                     type="hidden"
-                                    name="id_nuevacoleccion"
-                                    th:field="*{id_nuevacoleccion}"
+                                    name="idNuevaColeccion"
+                                    th:field="*{idNuevaColeccion}"
                                     />
                                 <input
                                     type="number"

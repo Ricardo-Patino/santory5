@@ -26,29 +26,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-3 d-flex justify-content-end align-items-start">
-                            <ul class="navbar-nav ml-auto" sec:authorize="!isAuthenticated()">
-                                <li class="nav-item">
-                                    <a class="nav-link" th:href="@{/login}">
-                                        <i class="fas fa-sign-in-alt"></i>
-                                    </a>
-                                </li>
-                            </ul>
 
-                            <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
-                                <li class="nav-item my-auto">
-                                    <form method="post" th:action="@{/logout}">
-                                        <button class="btn" style="background-color: #F29BA2">
-                                            <i class="fas fa-sign-out-alt"></i>
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -64,15 +42,63 @@
                         <div class="row">   
                             <div class="col-md-9">
 
-                                <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_VENDEDOR')">
-                                    <li class="nav-item ml-auto px-2"><a class="nav-menu-link nav-link" th:href="@{/nuevaColeccion/listado}" style="color: white;">Calzado femenino</a></li>
-                                    <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/puntosDeVenta/listado}"style="color: white;">Puntos de venta</a></li>
-                                    <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/reportes/principal}"style="color: white;">Reportes</a></li>
-                                    <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/sobrenosotros/listado}"style="color: white;">Sobre Nosotros</a></li>
-                                    
-                                    <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/carrito/listado}"style="color: white;">Carrito</a></li>
+                                <ul class="navbar-nav">
+                                    <li class="nav-item ml-auto px-2">
+                                        <a class="nav-menu-link nav-link" th:href="@{/nuevaColeccion/listado}" style="color: white; width: 200px">
+                                            <i class="fas fa-shoe-prints"></i> <!-- Icono de calzado -->
+                                            Calzado femenino
+                                        </a>
+                                    </li>
+                                    <li class="nav-item px-2">
+                                        <a class="nav-menu-link nav-link" th:href="@{/puntosDeVenta/listado}" style="color: white; width: 200px">
+                                            <i class="fas fa-map-marker-alt"></i> <!-- Icono de ubicación -->
+                                            Puntos de venta
+                                        </a>
+                                    </li>
+                                    <li class="nav-item px-2">
+                                        <a class="nav-menu-link nav-link" th:href="@{/reportes/principal}" style="color: white; width: 200px">
+                                            <i class="fas fa-chart-bar"></i> <!-- Icono de reportes -->
+                                            Reportes
+                                        </a>
+                                    </li>
+                                    <li class="nav-item px-2">
+                                        <a class="nav-menu-link nav-link" th:href="@{/sobrenosotros/nosotros}" style="color: white; width: 200px">
+                                            <i class="fas fa-info-circle"></i> <!-- Icono de información -->
+                                            Sobre Nosotros
+                                        </a>
+                                    </li>
+                                    <li class="nav-item px-2">
+                                        <a class="nav-menu-link nav-link" th:href="@{/carrito/listado}" style="color: white; width: 200px">
+                                            <i class="fas fa-shopping-cart"></i> <!-- Icono de carrito de compras -->
+                                            Carrito
+                                        </a>
+                                    </li>
+                                    <br/>
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3 d-flex justify-content-end align-items-start">
+                                                <ul class="navbar-nav ml-auto" sec:authorize="!isAuthenticated()">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" th:href="@{/login}">
+                                                            <i class="fas fa-sign-in-alt"></i> <!-- Icono de inicio de sesión -->
+                                                        </a>
+                                                    </li>
+                                                </ul>
 
+                                                <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()">
+                                                    <li class="nav-item my-auto">
+                                                        <form method="post" th:action="@{/logout}">
+                                                            <button class="btn" style="background-color: #F29BA2">
+                                                                <i class="fas fa-sign-out-alt"></i> <!-- Icono de cierre de sesión -->
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </ul>
+
                             </div>
 
                         </div>

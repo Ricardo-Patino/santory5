@@ -1,4 +1,3 @@
-
 package com.santory5.domain;
 
 import jakarta.persistence.*;
@@ -16,7 +15,7 @@ public class nuevaColeccion implements Serializable { //serializacion porque se 
     @Id //id categoria es la llave de la tabla categoria. 
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Los valores generados que estrategia usan, identico a la BD 
     @Column(name = "id_nuevacoleccion") //decir cual es el nombre en la base de datos. Se hace la asociación 
-    private long id_nuevacoleccion;
+    private long idNuevaColeccion;
     private double precio;
     private String descripcion;
     private int cantidad_colores;
@@ -29,9 +28,16 @@ public class nuevaColeccion implements Serializable { //serializacion porque se 
     public nuevaColeccion() {
     }
 
-    public nuevaColeccion(String descripcion, boolean activo) {
+    public nuevaColeccion(double precio, String descripcion, int cantidad_colores, String talla, int existencias, boolean activo, String rutaImagen) {
+        this.precio = precio;
         this.descripcion = descripcion;
+        this.cantidad_colores = cantidad_colores;
+        this.talla = talla;
+        this.existencias = existencias;
         this.activo = activo;
+        this.rutaImagen = rutaImagen;
     }
+
+
 
 }

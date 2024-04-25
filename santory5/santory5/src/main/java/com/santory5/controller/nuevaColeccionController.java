@@ -23,14 +23,14 @@ public class nuevaColeccionController {
 
     @GetMapping("/listado")
     public String inicio(Model model) {
-        var nuevacolecciones = nuevaColeccionService.getnuevaColeccion(false);
-        model.addAttribute("nuevacolecciones", nuevacolecciones);
-        model.addAttribute("totalnuevacolecciones", nuevacolecciones.size());
+        var nuevaColeccion = nuevaColeccionService.getnuevaColeccion(false);
+        model.addAttribute("nuevacolecciones", nuevaColeccion);
+        model.addAttribute("totalnuevacolecciones", nuevaColeccion.size());
         return "/nuevaColeccion/listado";
     }
 
     @GetMapping("/nuevo")
-    public String nuevaColeccionNuevo(nuevaColeccion nuevacoleccion) {
+    public String nuevaColeccionNuevo(nuevaColeccion nuevaColeccion) {
         return "/nuevaColeccion/modifica";
     }
 
@@ -38,7 +38,7 @@ public class nuevaColeccionController {
     private FirebaseStorageServiceImpl firebaseStorageService;
 
     @PostMapping("/guardar")
-    public String nuevaColeccionGuardar(nuevaColeccion nuevacoleccion) {
+    public String nuevaColeccionGuardar(nuevaColeccion nuevaColeccion) {
 //        if (!imagenFile.isEmpty()) {
 //            nuevaColeccionService.save(nuevacoleccion);
 //            nuevacoleccion.setRutaImagen(
@@ -47,20 +47,20 @@ public class nuevaColeccionController {
 //                            "nuevaColeccion", 
 //                            nuevacoleccion.getId_nuevacoleccion()));
 //        }
-        nuevaColeccionService.save(nuevacoleccion);
+        nuevaColeccionService.save(nuevaColeccion);
         return "redirect:/nuevaColeccion/listado";
     }
 
-    @GetMapping("/eliminar/{id_nuevacoleccion}")
-    public String nuevaColeccionEliminar(nuevaColeccion nuevacoleccion) {
-        nuevaColeccionService.delete(nuevacoleccion);
+    @GetMapping("/eliminar/{idNuevaColeccion}")
+    public String nuevaColeccionEliminar(nuevaColeccion nuevaColeccion) {
+        nuevaColeccionService.delete(nuevaColeccion);
         return "redirect:/nuevaColeccion/listado";
     }
 
-    @GetMapping("/modificar/{id_nuevacoleccion}")
-    public String nuevaColeccionModificar(nuevaColeccion nuevacoleccion, Model model) {
-        nuevacoleccion = nuevaColeccionService.getnuevaColeccions(nuevacoleccion);
-        model.addAttribute("nuevacoleccion", nuevacoleccion);
+    @GetMapping("/modificar/{idNuevaColeccion}")
+    public String nuevaColeccionModificar(nuevaColeccion nuevaColeccion, Model model) {
+        nuevaColeccion = nuevaColeccionService.getnuevaColeccions(nuevaColeccion);
+        model.addAttribute("nuevacoleccion", nuevaColeccion);
         return "/nuevaColeccion/modifica";
     }
 

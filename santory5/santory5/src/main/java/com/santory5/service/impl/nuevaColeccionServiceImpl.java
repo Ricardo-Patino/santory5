@@ -26,7 +26,7 @@ public class nuevaColeccionServiceImpl implements nuevaColeccionService {
     @Override
     @Transactional(readOnly = true)
     public nuevaColeccion getnuevaColeccions(nuevaColeccion nuevacoleccion) {
-        return nuevaColeccionDao.findById(nuevacoleccion.getId_nuevacoleccion()).orElse(null);
+        return nuevaColeccionDao.findById(nuevacoleccion.getIdNuevaColeccion()).orElse(null);
     }
 
     @Override
