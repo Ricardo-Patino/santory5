@@ -31,7 +31,7 @@ public class ItemServiceImpl implements ItemService {
         boolean existe = false;
         for (Item i : Itemes) {
             //Busca si ya existe el producto en el carrito
-            if (Objects.equals(i.getIdNuevaColeccion(), itemnuevacoleccion.getIdNuevaColeccion())) {
+            if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 //Valida si aún puede colocar un item adicional -segun existencias-
                 if (i.getCantidad() < itemnuevacoleccion.getExistencias()) {
                     //Incrementa en 1 la cantidad de elementos
@@ -54,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
         var existe = false;
         for (Item i : Itemes) {
             ++posicion;
-            if (Objects.equals(i.getIdNuevaColeccion(), itemnuevacoleccion.getIdNuevaColeccion())) {
+            if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 existe = true;
                 break;
             }
@@ -68,7 +68,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public Item get(Item itemnuevacoleccion) {
         for (Item i : Itemes) {
-            if (Objects.equals(i.getIdNuevaColeccion(), itemnuevacoleccion.getIdNuevaColeccion())) {
+            if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 return i;
             }
         }
@@ -79,7 +79,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void actualiza(Item itemnuevacoleccion) {
         for (Item i : Itemes) {
-            if (Objects.equals(i.getIdNuevaColeccion(), itemnuevacoleccion.getIdNuevaColeccion())) {
+            if (Objects.equals(i.getId_nuevacoleccion(), itemnuevacoleccion.getId_nuevacoleccion())) {
                 i.setCantidad(itemnuevacoleccion.getCantidad());
                 break;
             }
@@ -127,9 +127,9 @@ public class ItemServiceImpl implements ItemService {
             System.out.println("Producto: " + i.getDescripcion()
                     + " Cantidad: " + i.getCantidad()
                     + " Total: " + i.getPrecio() * i.getCantidad());
-            Venta venta = new Venta(factura.getIdFactura(), i.getIdNuevaColeccion(), i.getPrecio(), i.getCantidad());
+            Venta venta = new Venta(factura.getIdFactura(), i.getId_nuevacoleccion(), i.getPrecio(), i.getCantidad());
             ventaDao.save(venta);
-            nuevaColeccion nuevacoleccion = nuevaColeccionDao.getReferenceById(i.getIdNuevaColeccion());
+            nuevaColeccion nuevacoleccion = nuevaColeccionDao.getReferenceById(i.getId_nuevacoleccion());
             nuevacoleccion.setExistencias(nuevacoleccion.getExistencias()-i.getCantidad());
             nuevaColeccionDao.save(nuevacoleccion);
             total += i.getPrecio() * i.getCantidad();

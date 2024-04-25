@@ -12,7 +12,7 @@ public class Item extends nuevaColeccion {
     }
 
     public Item(nuevaColeccion nuevacoleccion) {
-        super.setIdNuevaColeccion(nuevacoleccion.getIdNuevaColeccion());
+        super.setId_nuevacoleccion(nuevacoleccion.getId_nuevacoleccion());
         super.setPrecio(nuevacoleccion.getPrecio());
         super.setDescripcion(nuevacoleccion.getDescripcion());
         super.setCantidad_colores(nuevacoleccion.getCantidad_colores());

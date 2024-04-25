@@ -13,6 +13,7 @@
         <section th:replace="~{nuevaColeccion/fragmentos :: agregarnuevaColeccion}"/> 
         <section th:replace="~{nuevaColeccion/fragmentos :: listadonuevaColeccion}"sec:authorize="hasRole('ROLE_ADMIN')"/>
 
+         <section th:replace="~{nuevaColeccion/fragmentos :: editarnuevaColeccion}"/>
         <footer th:replace="~{layout/plantilla :: footer}"/>      
 
     </body>
